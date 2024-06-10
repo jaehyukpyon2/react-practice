@@ -40,13 +40,11 @@ const List = () => {
       // todos[0].content = (todos[0].content) + (++count.current);
       return [
         {
-          id: 0,
+          id: 2,
           isDone: false,
-          content: "React 공부하기",
+          content: "React 공부하기1234",
           // date: new Date().getTime(),
-        } // TodoItem에서 memo해도 무조건 update 발생... (객체의 주소가 달라도, 프로퍼티의 값이 같으면 unmount/mount하지 않고, 그냥 update 만 한다...?)
-        // todos[0], // update 발생 X
-        // todos[0], // (*)을 실행할 경우, React 공부하기를 unmount하지 않고, 계속 update만 한다...
+        } 
       ];
     }
   }
