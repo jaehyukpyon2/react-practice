@@ -59,6 +59,9 @@ function App() {
     console.log("App updated")
   })
 
+  // App 컴포넌트가 re-rendering되면, 이런 onCreate, onUpdate와 같은 함수들도 재생성 돼서, 
+  // memo(Component)를 적용했어도 자식 컴포넌트가 re-rendering 된다. 왜? memo는 얕은 비교하는데, 함수가 다시 재생성되면
+  // 그 주소값이 달라지기에...
   const onCreate = (content) => {
     // const newTodo = {
     //   id: idRef.current++,
