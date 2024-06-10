@@ -2,7 +2,7 @@ import './App.css'
 import Header from './components/Header'
 import Editor from './components/Editor'
 import List from './components/List'
-import { useCallback, useState, createContext } from 'react'
+import { useCallback, useState, createContext, useMemo } from 'react'
 import { useRef } from 'react'
 import { useEffect } from 'react'
 import Exam from './components/Exam'
@@ -33,13 +33,10 @@ function reducer(state, action) {
   switch(action.type) {
     case 'CREATE':
       return [action.data, ...state];
-      break;
     case 'UPDATE':
       return state.map((item) => item.id === action.targetId ? {...item, isDone: !item.isDone} : item);
-      break;
     case 'DELETE':
       return state.filter((item) => item.id !== action.targetId);
-      break;
     default:
       return state;
   }
@@ -52,8 +49,11 @@ function reducer(state, action) {
 // Provider 프로퍼티는 사실 컴포넌트 <TodoContext.Provider></TodoContext.Provider>
 // 이 Provider 태그 안에 감싸져 있는 모든 (자식 및 자손) 컴포넌트들은, TodoContext의 데이터를 공급받을 수 있다.
 // 공급할 데이터는 어떻게 설정? <TodoContext.Provider value={{여기에 설정!}}></TodoContext.Provider>
-export const TodoContext = createContext();
-console.log(TodoContext)
+// export const TodoContext = createContext();
+// console.log(TodoContext)
+
+export const TodoStateContext = createContext();
+export const TodoDispatchContext = createContext();
 
 function App() {  
   // const [todos, setTodos] = useState(mockData);
@@ -133,23 +133,26 @@ function App() {
       targetId: targetId,
     });
   }, []);
+
+  const memoizedDispatch = useMemo(() => {
+    return {
+      onCreate,
+      onUpdate,
+      onDelete,
+    }
+  }, []);
   
   return (
     <div className='App'>
       {/* <Exam /> */}
 
-      <Header />
-
-      <TodoContext.Provider
-        value={{
-          todos,
-          onCreate,
-          onUpdate,
-          onDelete,
-        }}>
-        <Editor />
-        <List todos={todos} onUpdate={onUpdate} onDelete={onDelete} />
-      </TodoContext.Provider>
+      <Header />              
+        <TodoStateContext.Provider value={todos}>
+          <TodoDispatchContext.Provider value={memoizedDispatch}>
+            <Editor />
+            <List />
+          </TodoDispatchContext.Provider>
+        </TodoStateContext.Provider>      
     </div>
   )
 }

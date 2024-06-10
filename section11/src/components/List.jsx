@@ -4,11 +4,11 @@ import TodoItem from './TodoItem';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useMemo, useContext } from 'react';
-import { TodoContext } from '../App';
+import { TodoStateContext } from '../App';
 import { useRef } from 'react';
 
 const List = () => {
-  const {todos} = useContext(TodoContext);
+  const todos = useContext(TodoStateContext);
 
   const [search, setSearch] = useState("");
 
@@ -40,7 +40,7 @@ const List = () => {
       // todos[0].content = (todos[0].content) + (++count.current);
       return [
         {
-          id: 2,
+          id: 0,
           isDone: false,
           content: "React 공부하기1234",
           // date: new Date().getTime(),

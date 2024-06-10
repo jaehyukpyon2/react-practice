@@ -6,5 +6,5 @@ React.memo (memo) => 부모가 re-rendering 돼도, 자신이 받는 props가 �
 
 Context
 - TodoContext.Provider도 엄연히 react의 컴포넌트이기 때문에, App 컴포넌트로부터 value props로 제공받는 todos state와, onCreate, onUpdate, onDelete
-를 감싸고 있는 객체가 바뀌게 되면, 그러니깐 props가 바뀌게 되면, 당연히 TodoContext.Provider에 re-rendering 발생
-- 새로운 todo 아이템을 추가하거나, 수정하거나 삭제하거나 하면 todos state가 변경된다.  ()
+를 감싸고 있는 이 객체가 바뀌게 되면, 그러니깐 props가 바뀌게 되면, 당연히 TodoContext.Provider에 re-rendering 발생
+- 그런데 이 객체가 왜 바뀜? 새로운 todo 아이템을 추가하거나, 수정하거나 삭제하거나 하면 todos state가 변경되면서, 객체를 다시 생성해서 넘겨준다.
