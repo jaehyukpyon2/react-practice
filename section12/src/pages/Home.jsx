@@ -1,6 +1,17 @@
-import React from 'react';
+import React, { useEffect, memo } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
 const Home = () => {
+  // const [params, setParams] = useSearchParams();
+  // console.log(params.get("value"));
+
+  useEffect(() => {
+    console.log("Home mounted")
+  }, [])
+  useEffect(() => {
+    console.log("Home updated")
+  })
+
   return (
     <div>
       Home page
@@ -8,4 +19,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default memo(Home);

@@ -3,8 +3,19 @@ github repo = react-practice
 React.memo (memo) => 부모가 re-rendering 돼도, 자신이 받는 props가 변경되지 않으면, 다시는 re-rendering 되지 않음.
 -> 얕은 비교한다.
 
-
 Context
 - TodoContext.Provider도 엄연히 react의 컴포넌트이기 때문에, App 컴포넌트로부터 value props로 제공받는 todos state와, onCreate, onUpdate, onDelete
 를 감싸고 있는 이 객체가 바뀌게 되면, 그러니깐 props가 바뀌게 되면, 당연히 TodoContext.Provider에 re-rendering 발생
 - 그런데 이 객체가 왜 바뀜? 새로운 todo 아이템을 추가하거나, 수정하거나 삭제하거나 하면 todos state가 변경되면서, 객체를 다시 생성해서 넘겨준다.
+
+<Routes> 컴포넌트 안에는, Route 컴포넌트만 자식태그로서 들어갈 수 있다.
+Routes 바깥에 적혀진 태그들은,  
+
+useParams -> path variable 추출
+
+useSearchParams -> query string 추출
+
+props으로 넘겨준 컴포넌트는, 해당 컴포넌트를 제공받는 자식 컴포넌트에서 실제로 { } 안에 랜더링을 시켜줘야 mount된다.
+
+A컴포넌트가 props로 B컴포넌트를 받으면, A컴포넌트는 무조건 update 실행, but B컴포넌트는 자기의 props가 변경되지 않으면, update 실행 X
+만약 props로 넘겨줄 때 propComponent={{comp : <Component />}}와 같이 한 번 객체에 감싸서 넘겨줘도, <Component />는 update 되지 않음? ㅇㅇ. 만약 <Components props={여기에 전달되는 값이 변경돼야} Components update 발생)
