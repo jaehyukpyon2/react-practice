@@ -3,7 +3,7 @@ import './App.css'
 import Home from "./pages/Home"
 import Diary from "./pages/Diary"
 import New from "./pages/New"
-import {Routes, Route} from 'react-router-dom'
+import {Routes, Route, Link} from 'react-router-dom'
 import Notfound from './pages/Notfound'
 import Edit from './pages/Edit'
 
@@ -104,6 +104,9 @@ function App() {
       <button
         onClick={onClickAppJsx}
       >App.jsx click</button>
+      <Link to="/new">new</Link>
+      <Link to="/diary/10">diary/10</Link>
+      <Link to="/">/</Link>
 
       {/* <Header 
         title={"Header"}
@@ -127,4 +130,4 @@ function App() {
   )
 }
 
-export default memo(App)
+export default App;
