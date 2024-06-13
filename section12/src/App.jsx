@@ -61,7 +61,7 @@ function App() {
     console.log("App updated...")
   });
   const onClickAppJsx = () => {
-    console.log(mockData === data);
+    // console.log(mockData === data); // false
     setCount(count + 1);
   }
 
@@ -103,17 +103,10 @@ function App() {
       <h4>App.jsx - {count}</h4>
       <button
         onClick={onClickAppJsx}
-      >App.jsx click</button>
-      <Link to="/new">new</Link>
-      <Link to="/diary/10">diary/10</Link>
-      <Link to="/">/</Link>
-
-      {/* <Header 
-        title={"Header"}
-        leftChild={<Button text={"Left"} />}
-        // rightChild={{button: <Button text={"Right"} />}} 
-        rightChild={<Button text={"Right"} />}
-      /> */}
+      >App.jsx click</button><br />
+      <Link to="/new">new</Link><br />
+      <Link to="/diary/10">diary/10</Link><br />
+      <Link to="/">Home</Link><br />
 
       <DiaryStateContext.Provider value={data}>
         <DiaryDispatchContext.Provider value={{onCreate, onUpdate, onDelete,}}>

@@ -9,8 +9,8 @@ const Diary = () => {
     console.log("Diary updated...")
   });
 
-  const params = useParams();
-  console.log(params);
+  // const params = useParams();
+  // console.log(params);
 
   return (
     <div>
